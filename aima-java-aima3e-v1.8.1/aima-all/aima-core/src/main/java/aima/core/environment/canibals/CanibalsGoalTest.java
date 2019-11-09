@@ -7,7 +7,7 @@ import aima.core.search.framework.GoalTest;
  * @date october 2019
  */
 public class CanibalsGoalTest implements GoalTest {
-	CanibalsBoard goal = new CanibalsBoard(new int[] { 0, 0, 1, 3, 3});
+	CanibalsBoard goal = new CanibalsBoard(new int[] { 0, 0, 1, 3, 3 });
 
 	public boolean isGoalState(Object state) {
 		CanibalsBoard board = (CanibalsBoard) state;

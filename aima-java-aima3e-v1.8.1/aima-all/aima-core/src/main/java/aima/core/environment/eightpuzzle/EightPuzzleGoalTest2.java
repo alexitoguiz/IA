@@ -7,7 +7,7 @@ import aima.core.util.datastructure.XYLocation;
 
 /**
  * @author Ravi Mohan
- * @author Fernando Peña
+ * @author Fernando Peña Bes
  * 
  */
 public class EightPuzzleGoalTest2 implements GoalTest {

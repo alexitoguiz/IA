@@ -5,6 +5,7 @@ import aima.core.util.datastructure.XYLocation;
 
 /**
  * @author Ravi Mohan
+ * @author Fernando Peña Bes
  * 
  */
 public class ManhattanHeuristicFunction implements HeuristicFunction {
@@ -12,7 +13,7 @@ public class ManhattanHeuristicFunction implements HeuristicFunction {
 	public double h(Object state) {
 		FifteenPuzzleBoard board = (FifteenPuzzleBoard) state;
 		int retVal = 0;
-		for (int i = 0; i < 15; i++) {
+		for (int i = 1; i < 16; i++) {
 			XYLocation loc = board.getLocationOf(i);
 			retVal += evaluateManhattanDistanceOf(i, loc);
 		}
@@ -26,49 +27,49 @@ public class ManhattanHeuristicFunction implements HeuristicFunction {
 		int ypos = loc.getYCoOrdinate();
 		switch (i) {
 		
-		case 0:
+		case 1:
 			retVal = Math.abs(xpos - 0) + Math.abs(ypos - 0);
 			break;
-		case 1:
+		case 2:
 			retVal = Math.abs(xpos - 0) + Math.abs(ypos - 1);
 			break;
-		case 2:
+		case 3:
 			retVal = Math.abs(xpos - 0) + Math.abs(ypos - 2);
 			break;
-		case 3:
+		case 4:
 			retVal = Math.abs(xpos - 0) + Math.abs(ypos - 3);
 			break;
-		case 4:
+		case 5:
 			retVal = Math.abs(xpos - 1) + Math.abs(ypos - 0);
 			break;
-		case 5:
+		case 6:
 			retVal = Math.abs(xpos - 1) + Math.abs(ypos - 1);
 			break;
-		case 6:
+		case 7:
 			retVal = Math.abs(xpos - 1) + Math.abs(ypos - 2);
 			break;
-		case 7:
+		case 8:
 			retVal = Math.abs(xpos - 1) + Math.abs(ypos - 3);
 			break;
-		case 8:
+		case 9:
 			retVal = Math.abs(xpos - 2) + Math.abs(ypos - 0);
 			break;
-		case 9:
+		case 10:
 			retVal = Math.abs(xpos - 2) + Math.abs(ypos - 1);
 			break;
-		case 10:
+		case 11:
 			retVal = Math.abs(xpos - 2) + Math.abs(ypos - 2);
 			break;
-		case 11:
+		case 12:
 			retVal = Math.abs(xpos - 2) + Math.abs(ypos - 3);
 			break;
-		case 12:
+		case 13:
 			retVal = Math.abs(xpos - 3) + Math.abs(ypos - 0);
 			break;
-		case 13:
+		case 14:
 			retVal = Math.abs(xpos - 3) + Math.abs(ypos - 1);
 			break;
-		case 14:
+		case 15:
 			retVal = Math.abs(xpos - 3) + Math.abs(ypos - 2);
 			break;
 		}

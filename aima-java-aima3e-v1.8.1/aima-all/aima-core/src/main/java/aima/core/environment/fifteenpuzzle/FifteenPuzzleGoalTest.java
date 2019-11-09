@@ -4,7 +4,7 @@ import aima.core.search.framework.GoalTest;
 
 /**
  * @author Ravi Mohan
- * @author Fernando Peña
+ * @author Fernando Peña Bes
  * 
  */
 public class FifteenPuzzleGoalTest implements GoalTest {

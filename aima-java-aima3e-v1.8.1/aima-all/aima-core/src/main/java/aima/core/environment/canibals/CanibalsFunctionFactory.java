@@ -79,8 +79,7 @@ public class CanibalsFunctionFactory {
 				CanibalsBoard newBoard = new CanibalsBoard(board);
 				newBoard.move2M();
 				return newBoard;
-			} else if (CanibalsBoard.M1M1C.equals(a)
-					&& board.canMovePerson(CanibalsBoard.M1M1C)) {
+			} else if (CanibalsBoard.M1M1C.equals(a) && board.canMovePerson(CanibalsBoard.M1M1C)) {
 				CanibalsBoard newBoard = new CanibalsBoard(board);
 				newBoard.move1M1C();
 				return newBoard;

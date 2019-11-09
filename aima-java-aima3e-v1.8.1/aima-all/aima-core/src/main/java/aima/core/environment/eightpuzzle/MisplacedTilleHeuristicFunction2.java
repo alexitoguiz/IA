@@ -5,7 +5,7 @@ import aima.core.environment.eightpuzzle.EightPuzzleGoalTest2;
 
 /**
  * @author Ravi Mohan
- * @author Fernando Peña
+ * @author Fernando Peña Bes
  * 
  */
 public class MisplacedTilleHeuristicFunction2 implements HeuristicFunction {

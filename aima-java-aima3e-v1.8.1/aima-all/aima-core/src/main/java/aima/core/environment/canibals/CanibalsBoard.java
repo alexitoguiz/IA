@@ -192,7 +192,7 @@ public class CanibalsBoard {
 
 	@Override
 	public String toString() {
-		String retVal = getMI()  + " " + getCI() + " | " + getB() + " | " + getMD() + " " + getCD();
+		String retVal = getMI()  + " " + getCI() + " | " + getB_char() + " | " + getMD() + " " + getCD();
 		return retVal;
 	}
 
@@ -213,6 +213,10 @@ public class CanibalsBoard {
 	
 	private int getB() {
 		return state[2];
+	}
+	
+	private char getB_char() {
+		return (state[2] == 0) ? 'I' : 'D';
 	}
 	
 	private int getMD() {
@@ -241,7 +245,7 @@ public class CanibalsBoard {
 	private void setMD(int n) {
 		state[3] = n;
 	}
-	
+
 	private void setCD(int n) {
 		state[4] = n;
 	}

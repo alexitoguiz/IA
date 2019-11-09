@@ -22,6 +22,7 @@ import aima.core.search.uninformed.IterativeDeepeningSearch;
 
 /**
  * @author Ravi Mohan
+ * @author Fernando Peña Bes
  * 
  */
 
@@ -38,8 +39,8 @@ public class FifteenPuzzleDemo {
 	public static void main(String[] args) {
 		fifteenPuzzleDLSDemo();
 		fifteenPuzzleIDLSDemo();
-		//fifteenPuzzleGreedyBestFirstDemo();
-		//fifteenPuzzleGreedyBestFirstManhattanDemo();
+		fifteenPuzzleGreedyBestFirstDemo(); // (tiempo)
+		fifteenPuzzleGreedyBestFirstManhattanDemo(); // (tiempo)
 		fifteenPuzzleAStarDemo();
 		fifteenPuzzleAStarManhattanDemo();
 		fifteenPuzzleSimulatedAnnealingDemo();

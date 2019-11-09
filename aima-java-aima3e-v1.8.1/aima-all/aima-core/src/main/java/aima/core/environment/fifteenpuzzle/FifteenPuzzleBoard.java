@@ -11,7 +11,7 @@ import aima.core.util.datastructure.XYLocation;
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
- * @author Fernando Peña
+ * @author Fernando Peña Bes
  */
 public class FifteenPuzzleBoard {
 

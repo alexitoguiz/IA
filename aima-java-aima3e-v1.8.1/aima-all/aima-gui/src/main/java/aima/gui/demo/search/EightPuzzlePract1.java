@@ -44,6 +44,7 @@ public class EightPuzzlePract1 {
 		
 		eightPuzzleSearch(new DepthFirstSearch(new GraphSearch()), boardWithThreeMoveSolution, "DFS-G-3");
 		// (tiempo) eightPuzzleSearch(new DepthFirstSearch(new TreeSearch()), boardWithThreeMoveSolution, "DFS-T-3");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "DFS-T-3", "---", "---", "---", "---", "(1)");
 		
 		eightPuzzleSearch(new DepthLimitedSearch(9), boardWithThreeMoveSolution, "DLS-9-3");
 		eightPuzzleSearch(new DepthLimitedSearch(3), boardWithThreeMoveSolution, "DLS-3-3");
@@ -55,21 +56,21 @@ public class EightPuzzlePract1 {
 		
 		
 		eightPuzzleSearch(new GreedyBestFirstSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction()), 
-												boardWithThreeMoveSolution, "GBFS-MissTileH-G-3");
+												boardWithThreeMoveSolution, "GBFS-MisTileH-G-3");
 		eightPuzzleSearch(new GreedyBestFirstSearch(new GraphSearch(), new ManhattanHeuristicFunction()),
 												boardWithThreeMoveSolution, "GBFS-ManhH-G-3");
-		// (time) eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
-		//										boardWithThreeMoveSolution, "GBFS-MissTileH-T-3");
+		eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
+												boardWithThreeMoveSolution, "GBFS-MisTileH-T-3");
 		eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
 												boardWithThreeMoveSolution, "GBFS-ManhH-T-3");
 		
 		
 		eightPuzzleSearch(new AStarSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction()), 
-												boardWithThreeMoveSolution, "A*-MissTileH-G-3");
+												boardWithThreeMoveSolution, "A*-MisTileH-G-3");
 		eightPuzzleSearch(new AStarSearch(new GraphSearch(), new ManhattanHeuristicFunction()),
 												boardWithThreeMoveSolution, "A*-ManhH-G-3");
 		eightPuzzleSearch(new AStarSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
-												boardWithThreeMoveSolution, "A*-MissTileH-T-3");
+												boardWithThreeMoveSolution, "A*-MisTileH-T-3");
 		eightPuzzleSearch(new AStarSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
 												boardWithThreeMoveSolution, "A*-ManhH-T-3");
 		
@@ -82,6 +83,7 @@ public class EightPuzzlePract1 {
 		
 		eightPuzzleSearch(new DepthFirstSearch(new GraphSearch()), random1, "DFS-G-9");
 		// (tiempo) eightPuzzleSearch(new DepthFirstSearch(new TreeSearch()), random1, "DFS-T-9");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "DFS-T-9", "---", "---", "---", "---", "(1)");
 		
 		eightPuzzleSearch(new DepthLimitedSearch(9), random1, "DLS-9-9");
 		eightPuzzleSearch(new DepthLimitedSearch(3), random1, "DLS-3-9");
@@ -92,21 +94,22 @@ public class EightPuzzlePract1 {
 		eightPuzzleSearch(new UniformCostSearch(new TreeSearch()), random1, "UCS-T-9");
 		
 		eightPuzzleSearch(new GreedyBestFirstSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction()), 
-						random1, "GBFS-MissTileH-G-9");
+						random1, "GBFS-MisTileH-G-9");
 		eightPuzzleSearch(new GreedyBestFirstSearch(new GraphSearch(), new ManhattanHeuristicFunction()),
 						random1, "GBFS-ManhH-G-9");
-		// eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
-		//				random1, "GBFS-MissTileH-T-9");
+		// (memoria) eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
+		//				random1, "GBFS-MisTileH-T-9");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "GBFS-MisTileH-T-9", "---", "---", "---", "---", "(1)");
 		eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
 						random1, "GBFS-ManhH-T-9");
 		
 		
 		eightPuzzleSearch(new AStarSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction()), 
-						random1, "A*-MissTileH-G-9");
+						random1, "A*-MisTileH-G-9");
 		eightPuzzleSearch(new AStarSearch(new GraphSearch(), new ManhattanHeuristicFunction()),
 						random1, "A*-ManhH-G-9");
 		eightPuzzleSearch(new AStarSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
-						random1, "A*-MissTileH-T-9");
+						random1, "A*-MisTileH-T-9");
 		eightPuzzleSearch(new AStarSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
 						random1, "A*-ManhH-T-9");
 
@@ -115,37 +118,50 @@ public class EightPuzzlePract1 {
 		// Estado inicial con solución a 30 pasos
 		
 		eightPuzzleSearch(new BreadthFirstSearch(new GraphSearch()), extreme, "BFS-G-30");
-		// (espacio) eightPuzzleSearch(new BreadthFirstSearch(new TreeSearch()), extreme, "BFS-T-30");
+		// (memoria) eightPuzzleSearch(new BreadthFirstSearch(new TreeSearch()), extreme, "BFS-T-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "BFS-T-30", "---", "---", "---", "---", "(2)");
 		
 		eightPuzzleSearch(new DepthFirstSearch(new GraphSearch()), extreme, "DFS-G-30");
 		// (tiempo) eightPuzzleSearch(new DepthFirstSearch(new TreeSearch()), extreme, "DFS-T-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "DFS-T-30", "---", "---", "---", "---", "(1)");
 		
 		eightPuzzleSearch(new DepthLimitedSearch(9), extreme, "DLS-9-30");
 		eightPuzzleSearch(new DepthLimitedSearch(3), extreme, "DLS-3-30");
 		
+		// (tiempo) eightPuzzleSearch(new DepthLimitedSearch(3), extreme, "DLS-3-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "DLS-30-30", "---", "---", "---", "---", "(1)");
+		
 		// (tiempo) eightPuzzleSearch(new IterativeDeepeningSearch(), extreme, "IDS-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "IDS-30", "---", "---", "---", "---", "(1)");
 		
 		eightPuzzleSearch(new UniformCostSearch(new GraphSearch()), extreme, "UCS-G-30");
-		// (tiempo) eightPuzzleSearch(new UniformCostSearch(new TreeSearch()), extreme, "UCS-T-30");
+		// (memoria) eightPuzzleSearch(new UniformCostSearch(new TreeSearch()), extreme, "UCS-T-30");
+		// o tiempo?
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "UCS-T-30", "---", "---", "---", "---", "(2)");
 		
 		eightPuzzleSearch(new GreedyBestFirstSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction()), 
-						extreme, "GBFS-MissTileH-G-30");
+						extreme, "GBFS-MisTileH-G-30");
 		eightPuzzleSearch(new GreedyBestFirstSearch(new GraphSearch(), new ManhattanHeuristicFunction()),
 						extreme, "GBFS-ManhH-G-30");
-		// (time) eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
-		//				extreme, "GBFS-MissTileH-T-30");
-		// (time) eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
+		// (tiempo o memoria) eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
+		//			extreme, "GBFS-MisTileH-T-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "GBFS_MisTileH-T-30", "---", "---", "---", "---", "(1)");
+		// (tiempo o memoria) eightPuzzleSearch(new GreedyBestFirstSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
 		//				extreme, "GBFS-ManhH-T-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "GBFS_Manh-T-30", "---", "---", "---", "---", "(1)");
 		
 		
 		eightPuzzleSearch(new AStarSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction()), 
-						extreme, "A*-MissTileH-G-30");
+						extreme, "A*-MisTileH-G-30");
 		eightPuzzleSearch(new AStarSearch(new GraphSearch(), new ManhattanHeuristicFunction()),
 						extreme, "A*-ManhH-G-30");
-		//eightPuzzleSearch(new AStarSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
-		//				extreme, "A*-MissTileH-T-30");
-		//eightPuzzleSearch(new AStarSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
+		// (tiempo o memoria) eightPuzzleSearch(new AStarSearch(new TreeSearch(), new MisplacedTilleHeuristicFunction()), 
+		//				extreme, "A*-MisTileH-T-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "A*-MisTileH-T-30", "---", "---", "---", "---", "(1)");
+		// (tiempo o memoria) eightPuzzleSearch(new AStarSearch(new TreeSearch(), new ManhattanHeuristicFunction()),
 		//				extreme, "A*-ManhH-T-30");
+		System.out.format("%19s|%11s|%11s|%11s|%11s|%11s\n", "A*-MisTileH-T-30", "---", "---", "---", "---", "(1)");
+		System.out.println(new String(new char[79]).replace("\0", "-"));
 
 	}
 	

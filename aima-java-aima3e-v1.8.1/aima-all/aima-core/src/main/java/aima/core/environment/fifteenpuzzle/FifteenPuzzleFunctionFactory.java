@@ -10,7 +10,7 @@ import aima.core.search.framework.ResultFunction;
 /**
  * @author Ravi Mohan
  * @author Ciaran O'Reilly
- * @author Fernano Peña
+ * @author Fernando Peña Bes
  */
 public class FifteenPuzzleFunctionFactory {
 	private static ActionsFunction _actionsFunction = null;

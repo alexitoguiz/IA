@@ -11,7 +11,6 @@ import aima.core.agent.impl.NoOpAction;
 
 /**
  * @author Ravi Mohan
- * @author Fernando Peña Besa
  * 
  */
 public class SearchAgent extends AbstractAgent {

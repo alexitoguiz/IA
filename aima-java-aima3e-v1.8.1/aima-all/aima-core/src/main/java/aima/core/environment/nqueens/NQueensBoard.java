@@ -2,6 +2,7 @@ package aima.core.environment.nqueens;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import aima.core.util.datastructure.XYLocation;
 
@@ -11,6 +12,7 @@ import aima.core.util.datastructure.XYLocation;
  * 
  * @author Ravi Mohan
  * @author R. Lunde
+ * @author Fernando Peña Bes
  */
 public class NQueensBoard {
 
@@ -21,7 +23,7 @@ public class NQueensBoard {
 	int[][] squares;
 
 	int size;
-
+	
 	public NQueensBoard(int n) {
 		size = n;
 		squares = new int[size][size];
@@ -29,6 +31,14 @@ public class NQueensBoard {
 			for (int j = 0; j < size; j++) {
 				squares[i][j] = 0;
 			}
+		}
+	}
+
+	// Método que coloca de forma aleatorio una reina en cada columna
+	public void putNRandomQueens() {
+		Random r = new Random();
+		for(int i = 0; i < size; i++) {
+			squares[i][r.nextInt(size - 1)] = 1;
 		}
 	}
 

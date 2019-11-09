@@ -9,7 +9,6 @@ import aima.core.search.framework.GraphSearch;
 import aima.core.search.framework.Problem;
 import aima.core.search.framework.Search;
 import aima.core.search.framework.SearchAgent;
-import aima.core.search.framework.TreeSearch;
 import aima.core.search.informed.AStarSearch;
 import aima.core.search.uninformed.BreadthFirstSearch;
 import aima.core.search.uninformed.IterativeDeepeningSearch2;
@@ -67,7 +66,7 @@ public class EightPuzzlePract2 {
 				if (comprobarProfundidad(inicial, i)) {
 					// Realizar experimento si los estados inicial y final son válidos
 					nodosGenerados[0] += calcularNodosGenerados(new BreadthFirstSearch(new GraphSearch()), inicial);
-					//nodosGenerados[1] += calcularNodosGenerados(new IterativeDeepeningSearch2(), inicial);
+					nodosGenerados[1] += calcularNodosGenerados(new IterativeDeepeningSearch2(), inicial);
 					nodosGenerados[2] += calcularNodosGenerados(
 							new AStarSearch(new GraphSearch(), new MisplacedTilleHeuristicFunction2()), inicial);
 					nodosGenerados[3] += calcularNodosGenerados(
@@ -77,20 +76,17 @@ public class EightPuzzlePract2 {
 			}
 			// Hacer media de nodos generados y calcular b* para cada uno de los algoritmos
 			for (int k = 0; k < 4; k++) {
-				if (k == 1) {}
-				else {
 				nodosGenerados[k] = nodosGenerados[k] / numExperimentos;
 				bisec.setGeneratedNodes(nodosGenerados[k]);
 				factorRamificacionEfectivo[k] = bisec.metodoDeBiseccion(1.0000001, 4.0, 0.00001);
-				}
 			}
 			System.out.format(
-				"||%4d||%7d  |%8d  |%7d  |%7d  ||%7.2f  |%7.2f  |%7.2f  |%7.2f  ||\n",i, 
+				"||%4d||%7d  |%d  |%7d  |%7d  ||%7.2f  |%7.2f  |%7.2f  |%7.2f  ||\n",i, 
 				nodosGenerados[0], nodosGenerados[1], nodosGenerados[2], nodosGenerados[3],
 				factorRamificacionEfectivo[0], factorRamificacionEfectivo[1], factorRamificacionEfectivo[2], factorRamificacionEfectivo[3]);
 		}
 		
-		System.out.println(new String(new char[79]).replace("\0", "-"));
+		System.out.println(new String(new char[91]).replace("\0", "-"));
 	}
 	
 	// Comprueba que la profundidad de la solución óptima del tablero sea igual a <distancia>
