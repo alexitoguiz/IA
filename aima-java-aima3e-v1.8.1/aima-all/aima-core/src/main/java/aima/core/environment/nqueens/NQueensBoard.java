@@ -38,7 +38,7 @@ public class NQueensBoard {
 	public void putNRandomQueens() {
 		Random r = new Random();
 		for(int i = 0; i < size; i++) {
-			squares[i][r.nextInt(size - 1)] = 1;
+			squares[i][r.nextInt(size)] = 1;
 		}
 	}
 

@@ -42,28 +42,35 @@ public class NQueensLocal {
 
 	// Parámetros enfriamiento simulado
 	//////////////////////////////////////////////////
-	private static final int k = 50; // velocidad que tarda en comenzar a decrecer la temperatura
-	private static final double lam = 0.15; // como de rápido desciende la temperatura
-	private static final int limit = 100; // número máximo de iteraciones
+	private static final int k = 10; // velocidad que tarda en comenzar a decrecer la temperatura
+	private static final double lam = 0.001; // como de rápido desciende la temperatura
+	private static final int limit = 300; // número máximo de iteraciones
 	//////////////////////////////////////////////////
 
 	// Parámetros iniciales algoritmo genético
 	//////////////////////////////////////////////////
-	private static final int sizePoblacion = 50;
-	private static final double probMutacion = 0.15;
+	private static final int sizePoblacion = 2;
+	private static final double probMutacion = 0.2;
 	//////////////////////////////////////////////////
 
 	public static void main(String[] args) {
 
 		nQueensHillClimbingSearch_Statistics(numExperimentsHC);
-		nQueensRandomRestartHillClimbing();
+		//nQueensRandomRestartHillClimbing();
+		
+			//nQueensRestartHillClimbingSearch_Test(10000);
 
-		nQueensSimulatedAnnealing_Statistics(numExperimentsSA);
-		nQueensSimulatedAnnealingRestart();
+		//nQueensSimulatedAnnealing_Statistics(numExperimentsSA);
+		//nQueensSimulatedAnnealingRestart();
 
-		nQueensGeneticAlgorithmSearch();
-
+		//nQueensGeneticAlgorithmSearch();
+	
 	}
+	
+	
+	//////////////////////////////
+	/////  Hill - Climbing  //////
+	//////////////////////////////
 
 	// Realiza numExperiments ejecuciones del algoritmo HillClimbing para el
 	// problema de las nReinas desde tableros
@@ -108,10 +115,10 @@ public class NQueensLocal {
 
 			if (search.getOutcome() == HillClimbingSearch.SearchOutcome.SOLUTION_FOUND) {
 				numExitos++;
-				costeTotalExitos += expandedNodes;
+				costeTotalExitos += expandedNodes - 1;
 			} else {
 				numFallos++;
-				costeTotalFallos += expandedNodes;
+				costeTotalFallos += expandedNodes - 1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,7 +158,7 @@ public class NQueensLocal {
 
 				if (exito) {
 					numExitos++;
-					costeTotalExitos += expandedNodes;
+					costeTotalExitos += expandedNodes - 1;
 					System.out.println("Search Outcome=" + search.getOutcome());
 					System.out.println("Final State=\n" + search.getLastSearchState());
 
@@ -159,17 +166,46 @@ public class NQueensLocal {
 					System.out.format("Fallos: %d\n", numFallos);
 					System.out.format("Coste medio fallos: %.2f\n", (double) costeTotalFallos / numFallos);
 					System.out.format("Coste exito: %d\n", expandedNodes);
-					System.out.format("Coste medio exito: %.2f\n", (double) costeTotalExitos / numExitos);
+					System.out.format("Coste medio exito: %.2f\n", (double) costeTotalFallos + costeTotalExitos);
 
 				} else {
 					numFallos++;
-					costeTotalFallos += expandedNodes;
+					costeTotalFallos += expandedNodes - 1;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void nQueensRestartHillClimbingSearch_Test(int numExperiments) {
+		System.out.println("\nNQueens HillClimbing Restart Test con " + numExperiments + " estados iniciales diferentes  -->");
+		numFallos = 0;
+		numExitos = 0;
+		costeTotalFallos = 0;
+		costeTotalExitos = 0;
+		
+		long reintentosTotales = 0;
+		
+		long costeTotal = 0;
+
+		tablerosUsados = new ArrayList<NQueensBoard>();
+
+		for (int i = 0; i < numExperiments; i++) {
+			nQueensRandomRestartHillClimbing();
+			reintentosTotales += numIntentos;
+			costeTotal += costeTotalFallos + costeTotalExitos;
+		}
+		System.out.format("\nCoste medio: %.2f\n", (double) costeTotal / numExperiments);
+		System.out.format("Media reintentos: %.2f\n", (double) reintentosTotales / numExperiments);
+
+	}
+	
+	
+	
+	//////////////////////////////////
+	/////  Simulated Annealing  //////
+	//////////////////////////////////
 
 	// Realiza numExperiments ejecuciones del algoritmo Simulated Annealing para el
 	// problema de las nReinas desde tableros
@@ -210,15 +246,15 @@ public class NQueensLocal {
 
 			int expandedNodes = 0;
 
-			if (agent.getInstrumentation().getProperty("nodesExpanded") != null)
-				expandedNodes = (int) Float.parseFloat(agent.getInstrumentation().getProperty("nodesExpanded"));
+			if (agent.getInstrumentation().getProperty("nodesGenerated") != null)
+				expandedNodes = (int) Float.parseFloat(agent.getInstrumentation().getProperty("nodesGenerated"));
 
 			if (search.getOutcome() == SimulatedAnnealingSearch.SearchOutcome.SOLUTION_FOUND) {
 				numExitos++;
-				costeTotalExitos += expandedNodes;
+				costeTotalExitos += expandedNodes - 1;
 			} else {
 				numFallos++;
-				costeTotalFallos += expandedNodes;
+				costeTotalFallos += expandedNodes - 1;
 			}
 
 		} catch (Exception e) {
@@ -261,7 +297,7 @@ public class NQueensLocal {
 
 				if (exito) {
 					numExitos++;
-					costeTotalExitos += expandedNodes;
+					costeTotalExitos += expandedNodes - 1;
 					System.out.println("Search Outcome=" + search.getOutcome());
 					System.out.println("Final State=\n" + search.getLastSearchState());
 
@@ -271,13 +307,20 @@ public class NQueensLocal {
 
 				} else {
 					numFallos++;
-					costeTotalFallos += expandedNodes;
+					costeTotalFallos += expandedNodes - 1;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	////////////////////////////////
+	/////  Genetic Algorithm  //////
+	////////////////////////////////
 
 	// Resuelve el problema de las nReinas aplicando algoritmo genético
 	public static void nQueensGeneticAlgorithmSearch() {
@@ -292,7 +335,7 @@ public class NQueensLocal {
 			}
 
 			GeneticAlgorithm<Integer> ga = new GeneticAlgorithm<Integer>(_boardSize,
-					fitnessFunction.getFiniteAlphabetForBoardOfSize(_boardSize), 0.15);
+					fitnessFunction.getFiniteAlphabetForBoardOfSize(_boardSize), probMutacion);
 
 			// Run till goal is archieved
 			Individual<Integer> bestIndividual = ga.geneticAlgorithm(population, fitnessFunction, fitnessFunction, 0L);
@@ -312,6 +355,10 @@ public class NQueensLocal {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
 
 	// Genera un tablero con reinas en posiciones aleatorias (una por columna) que
 	// no esté guardado en tablerosUsados
@@ -321,7 +368,7 @@ public class NQueensLocal {
 
 		// generar tablero random
 		randomBoard.putNRandomQueens();
-
+		
 		// comprobar que el tablero no se haya usado ya
 		while (tablerosUsados.contains(randomBoard)) {
 			randomBoard.clear();
@@ -329,6 +376,7 @@ public class NQueensLocal {
 		}
 
 		tablerosUsados.add(randomBoard);
+		
 
 		return randomBoard;
 	}

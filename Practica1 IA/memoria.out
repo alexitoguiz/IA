@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introducci\363n}{}% 1
+\BOOKMARK [1][-]{section.2}{Misioneros y Can\355bales}{}% 2
+\BOOKMARK [1][-]{section.3}{8-puzzle}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{B\372squeda primero en anchura \(BFS\)}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{B\372squeda primero en profundidad \(DFS\)}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{B\372squeda en profundidad limitada}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{B\372squeda en profundizaci\363n iterativa}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{B\372squeda en coste uniforme}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.6}{B\372squeda primero el mejor voraz}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.7}{B\372squeda A*}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{15-puzzle}{}% 11

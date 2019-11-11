@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyvrb}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1.5cm}
+\setlength{\columnseprule}{0.2pt}
+
+\addto\captionsspanish{
+  \renewcommand{\tablename}{Tabla}
+}
+
+\usepackage[margin=1.2in,headheight=13.6pt]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\emph{Inteligencia Artificial 2019-20}}
+\rhead{\emph{Memoria Práctica 2}}
+
+
+\usepackage{float}
+
+\author{Fernando Peña Bes (756012)}
+\title{Memoria Práctica 2 - Inteligencia Artificial}
+\date{\today, Universidad de Zaragoza}
+
+\begin{document}
+\maketitle
+\section{Introducción} 
+El objetivo de esta práctica es realizar experimentos sobre el 8-puzzle para recopilar información relevante sobre la eficiencia de ciertos algoritmos de búsqueda.
+
+Se realizarán búsquedas ciegas (BFS e IDS) y búsquedas informadas con el algoritmo A* con las heurísticas de fichas descolocadas y Manhattan. Una vez terminadas las pruebas, se comparará la eficiencia de los algoritmos mostrando el número de nodos generados y el factor de ramificación efectivo $b*$ para distintas profundidades.
+
+Para realizar la práctica se ha usado el entorno de desarrollo Eclipse para Java y el código perteneciente al libro \textit{Artificial Intelligence: A Modern Approach} \cite{AIMA}, en la versión 1.8 (se puede descargar en \url{https://github.com/aimacode/aima-java/releases/tag/aima3e-v1.8.1}).
+
+\section{Metodología}
+Contar como se han hecho las pruebas, que archivos se han puesto\dots
+
+Se deben entregar en un zip solos las clases escritas o modificadas, y una memoria con la tabla(s) obtenidas y los comentarios que estimes oportunos.
+Notas de las tareas a realizar:
+1. Factor de ramificación efectivo con heurísticas del problema del 8 puzle. Se mostrará una tabla con los resultados tal como se muestra en el ejemplo:
+• Debes incluir en las métricas el número de nodos generados. En el código se define la métrica de nodos expandidos, pero no los nodos generados. Mira las notas al final de la práctica para ver que clases tienes que modificar en función de la versión del código que tengas.
+• Necesitarás implementar una clase Biseccion en aima.core.util.math que permite obtener los ceros de la función N = b* (b*d - 1) / (b* - 1) por aproximaciones sucesivas, donde b* es el factor de ramificación efectivo, N el número de nodos generados y d la profundidad de la solución.
+ 
+ • Debes generar 100 experimentos aleatorios de la profundidad deseada y calcular la media de los nodos generados. Puedes utilizar la clase GenerateInitialEightPuzzleBoard suministrada para que generar aleatoriamente estados iniciales, y estados finales de la profundidad deseada. El método random ejecutad acciones aleatorias desde el estado inicial, donde d es la profundidad deseada sin generar estados repetidos. Aun así, el que se hayan dado d pasos al estado final, no garantiza que no haya caminos más cortos al estado final. Por lo que en los experimentos, o al generar los estados inicial y final, deberás comprobar que la solución óptima es del coste deseado.
+• Tendrás que reescribir las clases ManhattanHeuristicFunction y MisplacedTilleHeuristicFunction para que sean útiles para cualquier estado final.
+
+
+En la versión 1.8 hay que añadir la métrica de nodos generados en las clases NodeExpander en aima.core.search.framework e IterativeDeepingingSearch. Toma como modelo la métrica nodos expandidos.
+En la versión 1.9 hay que añadir un contador en la clase Node de la misma manera que se contabilizan los nodos expandidos en la clase NodeExpander. Tendrás que añadir el manejo de esta métrica en QueueSearch (aima.core.search.qsearch), y en las clases DepthLimitedSearch e IterativeDeepeningSearch (aima.core.search.uninformed).
+OJO. Las heurísticas ManhattanHeuristicFunction y MisplacedTilleHeuristicFunction están pensadas para un único estado objetivo. En este problema tendrás que definir otra clase EightPuzzleGoalTest2 para poder modificar el estado objetivo y las heurísticas ManhattanHeuristicFunction2 y MisplacedTilleHeuristicFunction2 que tengan en cuenta el estado objetivo definido.
+
+
+\section{Resultados}
+
+A continuación, en la tabla \ref{tabla1}, se muestran los resultados obtenidos a partir de las pruebas descritas anteriormente:
+\begin{table}[H]
+\centering
+\begin{BVerbatim}[fontsize=\footnotesize]
+-------------------------------------------------------------------------------------------
+||    ||      Nodos Generados                   ||                  b*                   ||
+-------------------------------------------------------------------------------------------
+||   d||    BFS  |     IDS  |  A*h(1) |  A*h(2) ||    BFS  |    IDS  |  A*h(1) |  A*h(2) ||
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+||   2||      8  |      10  |      5  |      5  ||   2,37  |   2,70  |   1,79  |   1,79  ||
+||   3||     18  |      33  |      9  |      8  ||   2,22  |   2,81  |   1,66  |   1,58  ||
+||   4||     38  |     101  |     12  |     11  ||   2,15  |   2,86  |   1,49  |   1,45  ||
+||   5||     69  |     270  |     18  |     14  ||   2,05  |   2,81  |   1,46  |   1,37  ||
+||   6||    125  |     787  |     23  |     17  ||   2,00  |   2,83  |   1,40  |   1,31  ||
+||   7||    216  |    2141  |     32  |     22  ||   1,95  |   2,81  |   1,39  |   1,29  ||
+||   8||    377  |    6305  |     49  |     28  ||   1,92  |   2,83  |   1,40  |   1,28  ||
+||   9||    609  |   16619  |     76  |     37  ||   1,87  |   2,80  |   1,42  |   1,28  ||
+||  10||   1009  |   47000  |    113  |     46  ||   1,85  |   2,81  |   1,43  |   1,27  ||
+||  11||   1711  |  146883  |    173  |     64  ||   1,83  |   2,83  |   1,44  |   1,28  ||
+||  12||   2656  |  376434  |    266  |     82  ||   1,80  |   2,81  |   1,45  |   1,28  ||
+||  13||   4325  | 1087849  |    419  |    125  ||   1,79  |   2,82  |   1,46  |   1,30  ||
+||  14||   6963  | 3041002  |    626  |    146  ||   1,77  |   2,81  |   1,46  |   1,28  ||
+||  15||  11168  | 8734955  |    999  |    210  ||   1,76  |   2,82  |   1,47  |   1,30  ||
+||  16||  17913  |    ---   |   1530  |    304  ||   1,75  |    ---  |   1,47  |   1,31  ||
+||  17||  28273  |    ---   |   2521  |    438  ||   1,74  |    ---  |   1,48  |   1,32  ||
+||  18||  42008  |    ---   |   3651  |    582  ||   1,72  |    ---  |   1,48  |   1,32  ||
+||  19||  63523  |    ---   |   5527  |    745  ||   1,71  |    ---  |   1,48  |   1,31  ||
+||  20||  91362  |    ---   |   9146  |    949  ||   1,69  |    ---  |   1,49  |   1,31  ||
+||  21|| 129183  |    ---   |  13011  |   1263  ||   1,68  |    ---  |   1,49  |   1,31  ||
+||  22|| 176441  |    ---   |  21197  |   1780  ||   1,66  |    ---  |   1,50  |   1,32  ||
+||  23|| 232850  |    ---   |  30628  |   2228  ||   1,64  |    ---  |   1,49  |   1,31  ||
+||  24|| 288541  |    ---   |  46842  |   2989  ||   1,62  |    ---  |   1,49  |   1,32  ||
+-------------------------------------------------------------------------------------------
+
+      \end{BVerbatim}
+      \caption{\label{tabla1} Resultados ejecución \texttt{EightPuzzlePract2.java}}
+\end{table}
+
+En 16 hay desbordamiento
+
+Decir los resultados, que el IDS tarda mucho porque se realiza en árbol, que heurística es mejor. El factor de ramificación efectivo, si se encuentra la solución óptima\dots
+
+\section{Conclusiones}
+Se han evaluado los algoritmos y se ha visto cuáles son más adecuados para este problema.
+
+\begin{thebibliography}{2}
+      \bibitem{AIMA}
+      Stuart Rusell and Peter Norvig,
+      \textit{Artificial Intelligence: A Modern Approach}.
+
+      \bibitem{}
+      \textit{Apuntes de la asignatura Inteligencia Artificial}, Curso 2019-20.
+      
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,152 @@
+\documentclass[a4paper, 10pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1.5cm}
+\setlength{\columnseprule}{0.2pt}
+
+\addto\captionsspanish{
+  \renewcommand{\tablename}{Tabla}
+}
+\usepackage[margin=1.2in,headheight=13.6pt]{geometry}
+
+\usepackage{fancyhdr}
+\fancyhf{}
+\pagestyle{fancy}
+\lhead{\emph{Inteligencia Artificial 2019-20}}
+\rhead{\emph{Memoria Trabajo TP6-1}}
+
+\usepackage{float}
+
+\usepackage{xcolor}
+
+\addto\captionsspanish{\renewcommand{\chaptername}{Tarea}}
+
+\usepackage{subfiles}
+
+\begin{document}
+
+\begin{titlepage} % Suppresses headers and footers on the title page
+	\centering % Centre everything on the title page	
+
+	
+	\vspace*{\baselineskip} % White space at the top of the page
+	
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+	
+	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{0.75\baselineskip} % Whitespace above the title
+	
+	{\bfseries \color[rgb]{0.1608,0.2392,0.4214}\Huge MEMORIA TP6\,-1 \\ 
+	\huge Búsqueda local y Propagación de restricciones\\} % Title
+	
+	\vspace{0.75\baselineskip} % Whitespace below the title
+	
+	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal rule
+	\rule{\textwidth}{1.6pt} % Thick horizontal rule
+	
+	\vspace{2\baselineskip} % Whitespace after the title block
+	
+	%------------------------------------------------
+	%	Subtitle
+	%------------------------------------------------
+	{\scshape \LARGE Inteligencia Artificial}
+	
+	\vspace*{0.5\baselineskip} % Whitespace under the subtitle
+	
+	{\large Curso 2019-2020} % Subtitle or further description
+
+	
+	\vspace*{4\baselineskip} % Whitespace under the subtitle
+	
+	%------------------------------------------------
+	%	Editor(s)
+	%------------------------------------------------
+	
+	{\scshape Autor}
+	
+	\vspace{0.5\baselineskip} % Whitespace before the editors
+	
+	{\scshape\ \Large Fernando Peña Bes} % Editor list
+	
+	\vspace{0.5\baselineskip} % Whitespace below the editor list
+	
+	{\scshape \large nia: 756012} % Editor list
+	
+	\vspace{0\baselineskip} % Whitespace below the editor list
+	
+	\rule{0.2\textwidth}{0.4pt} % Thin horizontal rule
+
+	
+	\textit{\large Grado en Ingeniería Informática} % Editor affiliation
+	
+	\vspace{0.01\baselineskip} % Whitespace before the editors
+	
+ % Editor affiliation
+	
+	\vfill % Whitespace between editor names and publisher logo
+	
+	%------------------------------------------------
+	%	Publisher
+	%------------------------------------------------
+	\includegraphics[scale=0.8]{eina}
+	\vspace{0.5\baselineskip}
+
+		
+	{\large \today} % Publication year
+	
+\end{titlepage}
+
+\tableofcontents
+
+
+
+
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción} \markboth{INTRODUCTION}{}
+
+En este documento se trata el trabajo realizado en el trabajo práctico TP6 de la asignatura Inteligencia Artificial de la Universidad de Zaragoza.
+
+El trabajo consta de tres tareas. En la primera se resuelven problemas de \textbf{búsqueda local} y optimización y aplicándolo al problema de las \textbf{8-reinas}. En la segunda, se resuelve el problema de resolución de \textbf{sudokus} mediante \textbf{propagación de restricciones}, y por último, en la tercera se combina la idea de búsqueda local con la propagación de restricciones usando el algoritmo \textbf{\texttt{min-conflicts}}, aplicándolo también al problema de las 8-reinas.
+
+Para realizar la práctica se ha usado el entorno de desarrollo Eclipse para Java y el código perteneciente al libro \textit{Artificial Intelligence: A Modern Approach} \cite{AIMA}, en la versión 1.8 (se puede descargar en \url{https://github.com/aimacode/aima-java/releases/tag/aima3e-v1.8.1}).
+
+% Mostrar los resultados y comentarios de los experimentos realizados en esta primera parte del trabajo.
+
+\subfile{secciones/tarea1}
+
+
+
+
+
+\section{Conclusiones}
+En esta práctica se han evaluado diferentes algoritmos y heurísticas y se ha visto cuales son más adecuadas para resolver el problema del 8-puzzle. El mejor algoritmo de los evaluados, es el A* con la heurística de Manhattan.
+\chapter{Resolución de sudokus mediante propagación de restricciones  y búsqueda}
+
+\chapter{Propagación de restricciones y búsqueda local}
+
+\chapter*{Conclusiones}
+\addcontentsline{toc}{chapter}{Conclusiones} \markboth{CONCLUSIONES}{}
+
+\begin{thebibliography}{2}
+\addcontentsline{toc}{chapter}{Bibliografía} \markboth{BIBLIOGRAFIA}{}
+      \bibitem{AIMA}
+      Stuart Rusell and Peter Norvig,
+      \textit{Artificial Intelligence: A Modern Approach}.
+
+      \bibitem{}
+      \textit{Apuntes de la asignatura Inteligencia Artificial}, Curso 2019-20.
+      
+\end{thebibliography}
+
+\end{document}
